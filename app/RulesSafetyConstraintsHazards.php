@@ -8,15 +8,18 @@ class RulesSafetyConstraintsHazards extends Model
 {
     protected $table = "rules_safetyconstraints_hazards";
 
-    function rule(){
-    	return $this->belongsTo('App\Rule');
+    public function rule()
+    {
+        return $this->belongsTo('App\Rule');
     }
 
-    function safetyConstraint(){
-    	return $this->belongsTo('App\SafetyConstraints');
+    public function safetyConstraint()
+    {
+        return $this->belongsTo('App\SafetyConstraints');
     }
 
-    function hazard(){
-    	return $this->belongsTo('App\Hazards');
+    public function hazard()
+    {
+        return $this->belongsTo('App\Hazards');
     }
 }

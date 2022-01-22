@@ -6,17 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class RulesVariablesStates extends Model
 {
-	protected $table = "rules_variables_states";
+    protected $table = "rules_variables_states";
 
-	public function rule(){
-		return $this->belongsTo('App\Rule');
-	}
+    public function rule()
+    {
+        return $this->belongsTo('App\Rule');
+    }
 
-	public function variable(){
-		return $this->belongsTo('App\Variable');
-	}
+    public function variable()
+    {
+        return $this->belongsTo('App\Variable');
+    }
 
-	public function state(){
-		return $this->belongsTo('App\State');
-	}
+    public function state()
+    {
+        return $this->belongsTo('App\State');
+    }
 }
