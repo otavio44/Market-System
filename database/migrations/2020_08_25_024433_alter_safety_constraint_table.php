@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Migrations;
+
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -12,7 +14,7 @@ class AlterSafetyConstraintTable extends Migration
      */
     public function up()
     {
-        Schema::table("safety_constraints", function(Blueprint $table){
+        Schema::table("safety_constraints", function (Blueprint $table) {
             $table->integer("flag");
         });
     }
