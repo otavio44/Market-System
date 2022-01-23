@@ -3,9 +3,8 @@
 namespace Illuminate\Foundation\Testing;
 
 use Mockery;
-use PHPUnit_Framework_TestCase;
 
-abstract class TestCase extends PHPUnit_Framework_TestCase
+abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
     use Concerns\InteractsWithContainer,
         Concerns\MakesHttpRequests,
@@ -58,7 +57,7 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    protected function setUp()
+    protected function setUp() : void
     {
         if (! $this->app) {
             $this->refreshApplication();
@@ -116,7 +115,7 @@ abstract class TestCase extends PHPUnit_Framework_TestCase
      *
      * @return void
      */
-    protected function tearDown()
+    protected function tearDown() : void
     {
         if ($this->app) {
             foreach ($this->beforeApplicationDestroyedCallbacks as $callback) {
