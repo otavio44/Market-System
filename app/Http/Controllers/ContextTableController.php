@@ -14,40 +14,42 @@ use App\ControlAction as CA;
 
 class ContextTableController extends Controller
 {
-    public function save(Request $request){
-    	
-    	$context_table = new ContextTable();
+    public function save(Request $request)
+    {
+        $context_table = new ContextTable();
 
-    	$context_table->context = $request->input("states");
-    	$context_table->controlaction_id = $request->input("controlaction_id");
-    	$context_table->ca_provided = $request->input("provided");
-    	$context_table->ca_not_provided = $request->input("not_provided");
-    	$context_table->wrong_time_order = $request->input("wrong_time");
-    	$context_table->ca_too_early = $request->input("early");
-    	$context_table->ca_too_late = $request->input("late");
-    	$context_table->ca_too_soon = $request->input("soon");
-    	$context_table->ca_too_long = $request->input("long");
-    	$context_table->save();
+        $context_table->context = $request->input("states");
+        $context_table->controlaction_id = $request->input("controlaction_id");
+        $context_table->ca_provided = $request->input("provided");
+        $context_table->ca_not_provided = $request->input("not_provided");
+        $context_table->wrong_time_order = $request->input("wrong_time");
+        $context_table->ca_too_early = $request->input("early");
+        $context_table->ca_too_late = $request->input("late");
+        $context_table->ca_too_soon = $request->input("soon");
+        $context_table->ca_too_long = $request->input("long");
+        $context_table->save();
 
-    	return response()->json([
-        	'states' => $context_table->context,
-        	'controlaction_id' => $context_table->controlaction_id,
-        	'ca_provided' => $context_table->ca_provided,
-        	'ca_not_provided' => $context_table->ca_not_provided,
-        	'wrong_time_order' => $context_table->wrong_time_order,
-        	'ca_too_early' => $context_table->ca_too_early,
-        	'ca_too_late' => $context_table->ca_too_late,
-        	'ca_too_soon' => $context_table->ca_too_soon,
-        	'ca_too_long' => $context_table->ca_too_long
-    	]);
+        return response()->json([
+            'states' => $context_table->context,
+            'controlaction_id' => $context_table->controlaction_id,
+            'ca_provided' => $context_table->ca_provided,
+            'ca_not_provided' => $context_table->ca_not_provided,
+            'wrong_time_order' => $context_table->wrong_time_order,
+            'ca_too_early' => $context_table->ca_too_early,
+            'ca_too_late' => $context_table->ca_too_late,
+            'ca_too_soon' => $context_table->ca_too_soon,
+            'ca_too_long' => $context_table->ca_too_long
+        ]);
     }
 
-    public function delete(Request $request) {
+    public function delete(Request $request)
+    {
         ContextTable::where('controlaction_id', $request->input('controlaction_id'))->delete();
     }
 
-    public function generateUCA(Request $request){
-        $controlaction_id = $request->get("controlaction_id");  
+    public function generateUCA(Request $request)
+    {
+        $controlaction_id = $request->get("controlaction_id");
         $provided = [];
         $not_provided = [];
         $wrong_time = [];
@@ -56,27 +58,34 @@ class ContextTableController extends Controller
         $soon = [];
         $long = [];
 
-        foreach(ContextTable::where('controlaction_id', $controlaction_id)->get() as $row){
-            if($row->ca_not_provided == "true")
+        foreach (ContextTable::where('controlaction_id', $controlaction_id)->get() as $row) {
+            if ($row->ca_not_provided == "true") {
                 array_push($not_provided, $row->context);
+            }
 
-            if($row->ca_provided == "true")
+            if ($row->ca_provided == "true") {
                 array_push($provided, $row->context);
+            }
 
-            if($row->wrong_time_order == "true")
+            if ($row->wrong_time_order == "true") {
                 array_push($wrong_time, $row->context);
+            }
 
-            if($row->ca_too_early == "true")
+            if ($row->ca_too_early == "true") {
                 array_push($early, $row->context);
+            }
 
-            if($row->ca_too_late == "true")
+            if ($row->ca_too_late == "true") {
                 array_push($late, $row->context);
+            }
 
-            if($row->ca_too_soon == "true")
+            if ($row->ca_too_soon == "true") {
                 array_push($soon, $row->context);
+            }
 
-            if($row->ca_too_long == "true")
+            if ($row->ca_too_long == "true") {
                 array_push($long, $row->context);
+            }
         }
 
         $ucas = [];
@@ -91,17 +100,15 @@ class ContextTableController extends Controller
         foreach ($ucas as $value) {
             echo $value . "<br/>";
         }
-
-        
     }
 
-
-    public function createUCA($array, $type, $controlaction_id) {
+    public function createUCA($array, $type, $controlaction_id)
+    {
         $array_aux = [];
 
         foreach ($array as $value) {
             $aux = explode(",", $value);
-            foreach($aux as $r) {
+            foreach ($aux as $r) {
                 array_push($array_aux, trim($r));
             }
         }
@@ -111,7 +118,7 @@ class ContextTableController extends Controller
         $controller = "";
         $controlaction = "";
 
-        foreach(CA::where("id", $controlaction_id)->get() as $ca){
+        foreach (CA::where("id", $controlaction_id)->get() as $ca) {
             $controller = $ca->controller->name;
             $controlaction = $ca->name;
         }
@@ -121,24 +128,23 @@ class ContextTableController extends Controller
         $context = [];
         foreach ($aux as $key => $value) {
             if ($value == max($aux)) {
-                foreach(State::where('id', $key)->get() as $state){
+                foreach (State::where('id', $key)->get() as $state) {
                     array_push($context, strtolower($state->variable->name) . " is " . strtolower($state->name));
                 }
             }
         }
 
-        foreach($context as $key => $c) {
-            if ($key == 0){
+        foreach ($context as $key => $c) {
+            if ($key == 0) {
                 $uca .= $c;
             } else {
                 $uca .= " and ".$c;
             }
         }
-        if (!empty($context))
+        if (!empty($context)) {
             return $uca;
-        else
+        } else {
             return null;
+        }
     }
-
-
 }

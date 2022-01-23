@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Guidewords extends Model
 {
 
-	public function project(){
-		return $this->belongsTo(Projects::class);
-	}
-
+    public function project()
+    {
+        return $this->belongsTo(Projects::class);
+    }
 }

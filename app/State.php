@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class State extends Model
 {
-    public function variable(){
-		return $this->belongsTo(Variable::class);
-	}
-
+    public function variable()
+    {
+        return $this->belongsTo(Variable::class);
+    }
 }

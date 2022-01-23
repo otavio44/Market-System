@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Migrations;
+
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -18,12 +20,10 @@ class CreateForeignKey extends Migration
             $table->foreign('accidents_id')->references('id')->on('accidents')->onDelete('cascade');
             $table->foreign('hazards_id')->references('id')->on('hazards')->onDelete('cascade');
         });
-        
+
         Schema::table('accidents', function ($table) {
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
         });
-
-        
 
         Schema::table('teams', function ($table) {
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
@@ -92,7 +92,6 @@ class CreateForeignKey extends Migration
             $table->foreign('guideword_id')->references('id')->on('guidewords')->onDelete('cascade');
             $table->foreign('safety_constraint_id')->references('id')->on('safety_constraints')->onDelete('cascade');
         });*/
-
     }
 
     /**

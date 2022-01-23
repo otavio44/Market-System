@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Mission extends Model
 {
 
-	protected $table = 'mission';
+    protected $table = 'mission';
 
-    	public function project(){
-		return $this->belongsTo(Projects::class);
-	}
-
+    public function project()
+    {
+        return $this->belongsTo(Projects::class);
+    }
 }

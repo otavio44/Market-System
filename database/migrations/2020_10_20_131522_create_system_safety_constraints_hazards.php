@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Migrations;
+
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -12,7 +14,7 @@ class CreateSystemSafetyConstraintsHazards extends Migration
      */
     public function up()
     {
-        Schema::create("systemSafetyConstraint_hazards", function(Blueprint $table){
+        Schema::create("systemSafetyConstraint_hazards", function (Blueprint $table) {
             $table->integer("ssc_id")->unsigned();
             $table->integer("hazard_id")->unsigned();
             $table->timestamps();
