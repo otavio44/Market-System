@@ -11,4 +11,4 @@ jobs:
     - name: Install Dependencies
       run: composer install -q --ignore-platform-reqs --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Run Unit Tests
-      run: vendor/bin/phpunit tests
+      run: vendor/bin/phpunit tests/TrueTest.php
