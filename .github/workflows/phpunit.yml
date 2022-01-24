@@ -1,15 +1,17 @@
 name: PHPUnit
-uses: shivammathur/setup-php@v2
-with:
-    php-version: '7.4'
-    tools: phpunit
 
 on: [push]
 
 jobs:
   tests:
     runs-on: ubuntu-latest
+
     steps:
+    - name: Setup PHP with tools
+    uses: shivammathur/setup-php@v2
+    with:
+        php-version: '7.4'
+        tools: phpunit
     - uses: actions/checkout@v2
     - name: Install Dependencies
       run: composer install -q --ignore-platform-reqs --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
