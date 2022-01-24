@@ -9,9 +9,9 @@ jobs:
     steps:
     uses: shivammathur/setup-php@v2
     - name: Setup PHP with tools
-      with:
-        php-version: '7.4'
-        tools: phpunit
+    with:
+      php-version: '7.4'
+      tools: phpunit
     - uses: actions/checkout@v2
     - name: Install Dependencies
       run: composer install -q --ignore-platform-reqs --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
