@@ -7,9 +7,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Setup PHP with tools
     uses: shivammathur/setup-php@v2
-    with:
+    - name: Setup PHP with tools
+      with:
         php-version: '7.4'
         tools: phpunit
     - uses: actions/checkout@v2
