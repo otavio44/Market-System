@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    uses: shivammathur/setup-php@v2
+    - uses: shivammathur/setup-php@v2
     - name: Setup PHP with tools
     with:
       php-version: '7.4'
