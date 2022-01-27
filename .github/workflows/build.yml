@@ -11,8 +11,7 @@ jobs:
       - name: Build container
         run: docker-compose up -d --build
       - name: Execute container
-        run: docker exec -t webstamp-app /bin/bash
-      - name: Run app serve
-        run: php artisan serve
-      - name: Access web app
-        run: docker run --network container:webstamp-app appropriate/curl -s --retry 10 --retry-connrefused http://localhost:8080/
+        run: |
+          docker exec -t webstamp-app /bin/bash
+          php artisan serve
+          exit
