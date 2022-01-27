@@ -12,5 +12,7 @@ jobs:
         run: docker-compose up -d --build
       - name: Pull image
         run: docker pull appropriate/curl:latest
-      - name: Access web app
-        run: docker run --network container:webstamp-app appropriate/curl -s --retry 10 --retry-connrefused http://localhost:8080/
+      - name: Access web db
+        run: docker run --network container:webstamp-db appropriate/curl -s --retry 10 --retry-connrefused http://localhost:3306/
+      - name: Access web nginx
+        run: docker run --network container:webstamp-nginx appropriate/curl -s --retry 10 --retry-connrefused http://localhost:80/
