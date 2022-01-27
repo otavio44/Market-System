@@ -11,6 +11,7 @@ jobs:
       - name: Build container
         run: docker-compose up -d --build
       - name: Execute container
-        run: |
-          docker exec -t webstamp-app /bin/bash
-          exit
+        run: | 
+          docker network create mynetwork
+          docker run --network=mynetwork -d -p 127.0.0.1:33060:3306 --name webstamp nginx:alpine
+          docker run -it --network=mynetwork appropriate/curl http://webstamp
