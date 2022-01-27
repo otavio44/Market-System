@@ -15,4 +15,4 @@ jobs:
       - name: Build container
         run: docker-compose up -d --build
       - name: Access web app
-        run: docker run --network container:webstamp appropriate/curl -s --retry 10 --retry-connrefused http://localhost:8080/
+        run: docker run --network container:webstamp-app appropriate/curl -s --retry 10 --retry-connrefused http://localhost:8080/
