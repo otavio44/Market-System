@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-
 use App\Team;
 
 use App\User;
@@ -13,7 +11,8 @@ use App\User;
 class TeamController extends Controller
 {
 
-    public function get(Request $request){
+    public function get(Request $request)
+    {
         $team = Team::where('project_id', $request->input("id"))->orderBy('id', 'asc')->get();
         $myTeam = array();
         foreach ($team as $t) {
@@ -23,10 +22,8 @@ class TeamController extends Controller
             }
         }
 
-    	return response()->json([
-        	'team' => $myTeam
-    	]);
-
+        return response()->json([
+            'team' => $myTeam
+        ]);
     }
-
 }

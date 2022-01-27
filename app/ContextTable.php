@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class ContextTable extends Model
 {
 
-	public function project(){
-		return $this->belongsTo(Projects::class);
-	}
-
+    public function project()
+    {
+        return $this->belongsTo(Projects::class);
+    }
 }

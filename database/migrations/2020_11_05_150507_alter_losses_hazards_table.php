@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Migrations;
+
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -12,7 +14,7 @@ class AlterLossesHazardsTable extends Migration
      */
     public function up()
     {
-         Schema::table('losses_hazards', function (Blueprint $table) {
+        Schema::table('losses_hazards', function (Blueprint $table) {
             $table->renameColumn('losses_id', 'loss_id');
             $table->renameColumn('hazards_id', 'hazard_id');
         });

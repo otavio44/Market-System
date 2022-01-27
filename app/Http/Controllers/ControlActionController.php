@@ -11,24 +11,25 @@ use App\ControlAction as CA;
 
 class ControlActionController extends Controller
 {
-    
-	public function add(Request $request){
-		$controlAction = new CA();
-		$controlAction->name = $request->input('name');
-		$controlAction->description = "Description";
-		$controlAction->controller_id = $request->input('controller_id');
 
-		$controlAction->save();
+    public function add(Request $request)
+    {
+        $controlAction = new CA();
+        $controlAction->name = $request->input('name');
+        $controlAction->description = "Description";
+        $controlAction->controller_id = $request->input('controller_id');
 
-		return response()->json([
-			'id' => $controlAction->id,
-        	'name' => $controlAction->name,
-        	'controller_id' => $controlAction->controller_id
-    	]);
-	}
+        $controlAction->save();
 
-	public function delete(Request $request){
-		CA::destroy($request->input('id'));
-	}
+        return response()->json([
+            'id' => $controlAction->id,
+            'name' => $controlAction->name,
+            'controller_id' => $controlAction->controller_id
+        ]);
+    }
 
+    public function delete(Request $request)
+    {
+        CA::destroy($request->input('id'));
+    }
 }
