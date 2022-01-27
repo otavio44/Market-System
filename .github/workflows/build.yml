@@ -10,9 +10,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build container
         run: docker-compose up -d --build
-      - name: Pull image
-        run: docker pull appropriate/curl:latest
-      - name: Access web db
-        run: docker run --network container:webstamp-db appropriate/curl -s --retry 10 --retry-connrefused http://localhost:3306/
-      - name: Access web nginx
-        run: docker run --network container:webstamp-nginx appropriate/curl -s --retry 10 --retry-connrefused http://localhost:80/
+      - name: Execute container
+        run: docker exec -ti webstamp-app /bin/bash
+      - name: Run app serve
+        run: php artisan serve
+      - name: Access web app
+        run: docker run --network container:webstamp-app appropriate/curl -s --retry 10 --retry-connrefused http://localhost:8080/
