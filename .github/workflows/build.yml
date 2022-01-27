@@ -13,5 +13,5 @@ jobs:
       - name: Execute container
         run: |
           docker exec -t webstamp-app /bin/bash
-          php artisan serve
+          composer update
           exit
