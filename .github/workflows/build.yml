@@ -9,7 +9,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
-      - name: Build the stack
+      - name: Build container
         run: docker-compose up -d --build
+      - name: Access web app
+        run: docker run --network container:webstamp appropriate/curl -s --retry 10 --retry-connrefused http://localhost:8080/
