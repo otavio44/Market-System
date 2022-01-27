@@ -14,4 +14,4 @@ jobs:
         run: | 
           docker network create mynetwork
           docker run --network=mynetwork -d -p 127.0.0.1:6060:6060 --name webstamp nginx:alpine
-          docker run -it --network=mynetwork appropriate/curl http://webstamp
+          docker run -t --network=mynetwork appropriate/curl http://webstamp
