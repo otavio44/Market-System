@@ -13,5 +13,4 @@ jobs:
       - name: Execute container
         run: |
           docker exec -t webstamp-app /bin/bash
-          composer update
           exit
