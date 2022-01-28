@@ -1,5 +1,8 @@
 <?php
 
+// phpcs:ignoreFile
+
+
 use App\Team;
 
 /*
