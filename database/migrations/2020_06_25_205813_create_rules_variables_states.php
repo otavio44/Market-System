@@ -1,7 +1,5 @@
 <?php
 
-namespace Database\Migrations;
-
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -14,7 +12,7 @@ class CreateRulesVariablesStates extends Migration
      */
     public function up()
     {
-        Schema::create('rules_variables_states', function (Blueprint $table) {
+        Schema::create('rules_variables_states', function(Blueprint $table){
             $table->integer('rule_id')->unsigned();
             $table->integer('variable_id')->unsigned();
             $table->integer('state_id')->unsigned();

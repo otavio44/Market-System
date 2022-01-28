@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRulesTable extends Migration
+class CreateConnectionMeaningTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,11 @@ class CreateRulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('rules', function (Blueprint $table) {
+        Schema::create("connection_meaning", function(Blueprint $table){
             $table->increments('id');
-            $table->integer('index');
-            $table->integer('variable_id')->unsigned();
-            $table->integer('state_id')->unsigned();
-            $table->integer('controlaction_id')->unsigned();
-            $table->string('column');
+            $table->integer("connection_id")->unsigned();
+            $table->integer("meaning_id")->unsigned();
+            $table->text("meaning_type");
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateRulesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('rules');
+        Schema::dropIfExists("connection_meaning");
     }
 }

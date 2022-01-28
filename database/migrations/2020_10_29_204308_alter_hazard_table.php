@@ -1,7 +1,5 @@
 <?php
 
-namespace Database\Migrations;
-
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -14,7 +12,7 @@ class AlterHazardTable extends Migration
      */
     public function up()
     {
-        Schema::table('hazards', function (Blueprint $table) {
+        Schema::table('hazards', function (Blueprint $table){
             $table->string('name', 500)->change();
         });
     }
