@@ -17,11 +17,4 @@ class ExampleTest extends TestCase
              ->see('STAMP');
     }
 
-    public function testAddAccident()
-    {
-        $this->press('+');
-        $this->visit('/addaccident')
-             ->type('Accident', 'name')
-             ->press('Add');
-    }
 }
