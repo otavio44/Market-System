@@ -12,5 +12,3 @@ jobs:
       run: composer install -q --ignore-platform-reqs --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Run PHPCS on app
       run: vendor/bin/phpcs --standard=PSR2 app
-    - name: Run PHPCS on database
-      run: vendor/bin/phpcs --standard=PSR2 database/migrations
