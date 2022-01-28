@@ -2,7 +2,6 @@
 
 // phpcs:ignoreFile
 
-
 use App\Team;
 
 /*
