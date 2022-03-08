@@ -23,4 +23,8 @@ class ContextTableRepository extends Repository
     {
         return ContextTable::where('id', $id)->get()->first();
     }
+
+    public function update($model)
+    {
+    }
 }

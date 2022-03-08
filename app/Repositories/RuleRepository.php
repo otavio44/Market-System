@@ -18,4 +18,12 @@ class RuleRepository extends Repository
     {
         return State::destroy($id);
     }
+
+    public function read($id)
+    {
+    }
+
+    public function update($rule)
+    {
+    }
 }

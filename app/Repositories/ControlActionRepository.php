@@ -18,4 +18,12 @@ class ControlActionRepository extends Repository
     {
         return ControlAction::destroy($id);
     }
+
+    public function read($id)
+    {
+    }
+
+    public function update($controlAction)
+    {
+    }
 }
