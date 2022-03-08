@@ -15,6 +15,6 @@ jobs:
     - name: Generate Keys
       run: docker exec -u 0 webstamp-app php artisan key:generate
     - name: Run migrations
-      run: docker exec -u 0 webstamp-app php artisan migrate -env=production 
+      run: docker exec -u 0 webstamp-app php artisan migrate --seed 
     - name: Run Tests
       run: docker exec -u 0 webstamp-app vendor/bin/phpunit tests/EndToEnd
