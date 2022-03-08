@@ -9,8 +9,6 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
  
 class EndToEndTest extends TestCase
 {
-    use WithoutMiddleware;
-
     /**
      * See title.
      *
