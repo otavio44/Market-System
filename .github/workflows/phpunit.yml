@@ -11,7 +11,7 @@ jobs:
     - name: Build container
       run: docker-compose up -d --build
     - name: Install Dependencies
-      run: docker-compose exec app composer install -q --ignore-platform-reqs --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      run: docker-compose exec app composer install
     - name: Key Generate
       run: docker-compose exec app php artisan key:generate
     - name: Run Tests
