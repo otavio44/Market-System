@@ -7,24 +7,29 @@ use App\State;
 use App\ControlAction as CA;
 use App\Repositories\ContexTableRepository;
 
-class ContextTableService extends Services {
-
-    public function __construct(ContexTableRepository $contextTableRepository) {
-        $this->contextTableRepository = $contextTableRepository;
-    }
+class ContextTableService extends Services
+{
 
     private $contextTableRepository;
 
-    public function add(CA $contextTable) {
-        return $this->contextTableRepository->add($contextTable);  
+    public function __construct(ContexTableRepository $contextTableRepository)
+    {
+        $this->contextTableRepository = $contextTableRepository;
     }
 
-    public function delete($id) {
+    public function add(CA $contextTable)
+    {
+        return $this->contextTableRepository->add($contextTable);
+    }
+
+    public function delete($id)
+    {
         return $this->contextTableRepository->delete($id);
     }
 
-    public function generateUCA(Request $request){
-        $controlaction_id = $request->get("controlaction_id");  
+    public function generateUCA(Request $request)
+    {
+        $controlaction_id = $request->get("controlaction_id");
         $provided = [];
         $not_provided = [];
         $wrong_time = [];
@@ -33,27 +38,34 @@ class ContextTableService extends Services {
         $soon = [];
         $long = [];
 
-        foreach(ContextTable::where('controlaction_id', $controlaction_id)->get() as $row){
-            if($row->ca_not_provided == "true")
+        foreach (ContextTable::where('controlaction_id', $controlaction_id)->get() as $row) {
+            if ($row->ca_not_provided == "true") {
                 array_push($not_provided, $row->context);
+            }
 
-            if($row->ca_provided == "true")
+            if ($row->ca_provided == "true") {
                 array_push($provided, $row->context);
+            }
 
-            if($row->wrong_time_order == "true")
+            if ($row->wrong_time_order == "true") {
                 array_push($wrong_time, $row->context);
-
-            if($row->ca_too_early == "true")
+            }
+            
+            if ($row->ca_too_early == "true") {
                 array_push($early, $row->context);
+            }
 
-            if($row->ca_too_late == "true")
+            if ($row->ca_too_late == "true") {
                 array_push($late, $row->context);
+            }
 
-            if($row->ca_too_soon == "true")
+            if ($row->ca_too_soon == "true") {
                 array_push($soon, $row->context);
+            }
 
-            if($row->ca_too_long == "true")
+            if ($row->ca_too_long == "true") {
                 array_push($long, $row->context);
+            }
         }
 
         $ucas = [];
@@ -67,15 +79,16 @@ class ContextTableService extends Services {
         $ucas = array_filter($ucas);
         foreach ($ucas as $value) {
             echo $value . "<br/>";
-        }   
+        }
     }
 
-    public function createUCA($array, $type, $controlaction_id) {
+    public function createUCA($array, $type, $controlaction_id)
+    {
         $array_aux = [];
 
         foreach ($array as $value) {
             $aux = explode(",", $value);
-            foreach($aux as $r) {
+            foreach ($aux as $r) {
                 array_push($array_aux, trim($r));
             }
         }
@@ -85,7 +98,7 @@ class ContextTableService extends Services {
         $controller = "";
         $controlaction = "";
 
-        foreach(CA::where("id", $controlaction_id)->get() as $ca){
+        foreach (CA::where("id", $controlaction_id)->get() as $ca) {
             $controller = $ca->controller->name;
             $controlaction = $ca->name;
         }
@@ -95,23 +108,24 @@ class ContextTableService extends Services {
         $context = [];
         foreach ($aux as $key => $value) {
             if ($value == max($aux)) {
-                foreach(State::where('id', $key)->get() as $state){
+                foreach (State::where('id', $key)->get() as $state) {
                     array_push($context, strtolower($state->variable->name) . " is " . strtolower($state->name));
                 }
             }
         }
 
-        foreach($context as $key => $c) {
-            if ($key == 0){
+        foreach ($context as $key => $c) {
+            if ($key == 0) {
                 $uca .= $c;
             } else {
                 $uca .= " and ".$c;
             }
         }
-        if (!empty($context))
-            return $uca;
-        else
-            return null;
-    }
 
+        if (!empty($context)) {
+            return $uca;
+        } else {
+            return null;
+        }
+    }
 }

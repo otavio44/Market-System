@@ -2,18 +2,19 @@
 
 namespace App\Repositories;
 
-abstract class Repository{
+abstract class Repository
+{
 
-	public function save($m){
-	   $m->save();
-	}
+    abstract public function add($model);
 
-	public abstract function add($model);
+    abstract public function read($id);
 
-	public abstract function read($id);
+    abstract public function update($model);
 
-	public abstract function update($model);
+    abstract public function delete($model);
 
-	public abstract function delete($model);
-
+    public function save($m)
+    {
+        $m->save();
+    }
 }

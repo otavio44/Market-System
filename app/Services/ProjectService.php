@@ -7,17 +7,20 @@ use App\User;
 use App\Repositories\ProjectRepository;
 use App\Repositories\UserRepository;
 
-class ProjectService extends Services {
+class ProjectService extends Services
+{
 
-    public function __construct(ProjectRepository $projectRepository, UserRepository $userRepository) {
+    private $projectRepository;
+    private $userRepository;
+    
+    public function __construct(ProjectRepository $projectRepository, UserRepository $userRepository)
+    {
         $this->projectRepository = $projectRepository;
         $this->userRepository = $userRepository;
     }
 
-    private $projectRepository;
-    private $userRepository;
-
-    public function add(Project $project) {
+    public function add(Project $project)
+    {
         $usersEmail = $project->users;
         unset($project->users);
         $projectSaved = $this->projectRepository->add($project);
@@ -26,7 +29,8 @@ class ProjectService extends Services {
         return $this->addUsersOnProject($projectSaved->id, $usersEmail);
     }
 
-    public function read($id) {
+    public function read($id)
+    {
         $project = $this->projectRepository->read($id);
         if (is_null($project)) {
             return response()->json(['Resposta' => 'Ojeto nao encontrado'], 404);
@@ -34,11 +38,13 @@ class ProjectService extends Services {
         return $project;
     }
 
-    public function edit(Project $project) {
+    public function edit(Project $project)
+    {
         return $this->projectRepository->update($project);
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $projectDeleted = $this->projectRepository->delete($id);
 
         if ($projectDeleted) {
@@ -47,7 +53,8 @@ class ProjectService extends Services {
         return response()->json(['Resposta' => 'Ojeto nao encontrado'], 404);
     }
 
-    public function addUsersOnProject($projectId, $usersEmail) {
+    public function addUsersOnProject($projectId, $usersEmail)
+    {
         $idusersEmail = [];
         foreach ($usersEmail as $emailUser) {
             array_push($idusersEmail, $this->userRepository->getIdByEmail($emailUser));
@@ -55,7 +62,8 @@ class ProjectService extends Services {
         return $this->projectRepository->addUsersOnProject($projectId, $idusersEmail);
     }
 
-    public function getUsers($id){
+    public function getUsers($id)
+    {
         $project = $this->projectRepository->read($id);
         $users = $project->users;
         $emailUsers = "";
@@ -64,5 +72,4 @@ class ProjectService extends Services {
         }
         return substr($emailUsers, 0, -1);
     }
-
 }

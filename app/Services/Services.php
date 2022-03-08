@@ -2,10 +2,11 @@
 
 namespace App\Services;
 
-class Services {
+class Services
+{
 
-    public function save($m) {
+    public function save($m)
+    {
         return $m->save();
     }
-
 }
