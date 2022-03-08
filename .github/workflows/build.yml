@@ -1,4 +1,4 @@
-name: Build and Test
+name: Build
 
 on: [push]
 
@@ -16,15 +16,3 @@ jobs:
           docker network create mynetwork
           docker run --network=mynetwork -d -p 127.0.0.1:6060:6060 --name webstamp nginx:alpine
           docker run -t --network=mynetwork appropriate/curl http://webstamp
-   
-  tests:
-    runs-on: ubuntu-latest
-    needs: build
-
-    steps:
-    - name: Install dependencies 
-      run: docker exec -u 0 webstamp-app composer install -q --ignore-platform-reqs --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-    - name: Generate Keys
-      run: docker exec -u 0 webstamp-app php artisan key:generate
-    - name: Run Tests
-      run: docker exec -u 0 webstamp-app vendor/bin/phpunit tests/
