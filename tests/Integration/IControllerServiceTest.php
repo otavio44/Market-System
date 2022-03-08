@@ -24,7 +24,7 @@ class IControllerServiceTest extends TestCase {
         $this->project->name = "Name Project Test";
         $this->project->URL = "Name-Test-IdX";
         $this->project->type = "Security";
-        $this->project->save();   
+        $this->project->save(); 
     }
 
     /**
@@ -32,13 +32,11 @@ class IControllerServiceTest extends TestCase {
      *
      * @return void
      */
-    
     public function test_create_controller_on_database() {
         $controllerInsert = new Controller();
         $controllerInsert->name = "Name Controller Test";
         $controllerInsert->type = "Automatized";   
-        $controllerInsert->project_id = $this->project->id;    
-        
+        $controllerInsert->project_id = $this->project->id;   
 
         $controllerService = new ControllerService(new ControllerRepository());
         $SystemGoalSaveDataBase = $controllerService->add($controllerInsert);
@@ -49,7 +47,6 @@ class IControllerServiceTest extends TestCase {
         
         $this->assertEquals($controllerInsert->name, $SystemGoalSaveDataBase->name);
     }
-
     
     public function test_read_controller_on_database() {
         $controllerInsert = new Controller();
@@ -64,7 +61,6 @@ class IControllerServiceTest extends TestCase {
         $controllerReadDataBase = $controllerService->read($ControllerSaveDataBase->id);
         $this->assertEquals($ControllerSaveDataBase->id, $controllerReadDataBase->id);
     }
-
     
     public function test_update_controller_on_database() {
         $controllerInsert = new Controller();
@@ -85,7 +81,6 @@ class IControllerServiceTest extends TestCase {
             'type' => "Automatized"
         ]);
     }
-
     
     public function test_delete_controller_on_database() {
         $controllerInsert = new Controller();
@@ -93,7 +88,6 @@ class IControllerServiceTest extends TestCase {
         $controllerInsert->type =  "Automatized";   
         $controllerInsert->project_id = $this->project->id;    
         
-
         $controllerService = new ControllerService(new ControllerRepository());
         $ControllerSaveDataBase = $controllerService->add($controllerInsert);
         

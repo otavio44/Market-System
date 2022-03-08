@@ -4,8 +4,6 @@ on: [push]
 
 jobs:
   tests:
-    runs-on: ubuntu-latest
-
     env:
       APP_ENV: local
       APP_KEY: base64:j/n0d+C5pmJ2ZB+JccOA+GAbwkQCEzyAUqNT1dGCzZM=
@@ -14,7 +12,7 @@ jobs:
       APP_URL: http://localhost
 
       DB_CONNECTION: mysql
-      DB_HOST: db
+      DB_HOST: localhost
       DB_PORT: 3306
       DB_DATABASE: stpatool
       DB_USERNAME: webstampEmbraer
@@ -34,6 +32,8 @@ jobs:
       MAIL_USERNAME: webstamp.unifal@gmail.com
       MAIL_PASSWORD: xqfyuaoxpoxlengn
       MAIL_ENCRYPTION: tls
+
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
