@@ -21,5 +21,4 @@ class AccessHomeTest extends TestCase
             ->see('About STAMP/STPA')
             ->dontSee('Error');
     }
-
 }

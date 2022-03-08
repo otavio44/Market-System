@@ -33,5 +33,4 @@ class RegisterUserTest extends TestCase
             ->see('Projects')
             ->see('Name Test 12345');
     }
-
 }
