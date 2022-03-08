@@ -20,11 +20,11 @@ jobs:
       run: docker-compose up -d --build
     - name: Run docker ps -a
       run: docker ps -a
-#    - name: Install dependencies 
-#      run: docker exec -u 0 webstamp-app composer install -q --ignore-platform-reqs --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-#    - name: Generate Keys
-#      run: docker exec -u 0 webstamp-app php artisan key:generate
-#    - name: Run migrations
-#      run: docker exec -u 0 webstamp-app php artisan migrate --seed
-#    - name: Run Tests
-#      run: docker exec -u 0 webstamp-app vendor/bin/phpunit tests/EndToEnd
+    - name: Install dependencies 
+      run: docker exec -u 0 webstamp-app composer install -q --ignore-platform-reqs --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+    - name: Generate Keys
+      run: docker exec -u 0 webstamp-app php artisan key:generate
+    - name: Run migrations
+      run: docker exec -u 0 webstamp-app php artisan migrate --seed
+    - name: Run Tests
+      run: docker exec -u 0 webstamp-app vendor/bin/phpunit tests/EndToEnd
