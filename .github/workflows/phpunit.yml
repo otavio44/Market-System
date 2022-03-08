@@ -12,10 +12,6 @@ jobs:
       run: docker-compose build app
     - name: Up container
       run: docker-compose up -d
-    - name: Permission
-      run: sudo chown -R $USER ~/.composer/
-    - name: Install Dependencies    
-      run: docker-compose exec -T app composer install
       # run: docker exec -u 0 webstamp-app composer install -q --ignore-platform-reqs --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Generate Keys
       run: docker-compose exec -T app php artisan key:generate
