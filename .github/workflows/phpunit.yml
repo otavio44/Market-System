@@ -8,14 +8,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build app
-      run: docker-compose build app
-    - name: Up container
-      run: docker-compose up -d
-      # run: docker exec -u 0 webstamp-app composer install -q --ignore-platform-reqs --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+    - name: Build container
+      run: docker-compose up -d --build
+    - name: Install dependencies 
+      run: docker exec -u 0 webstamp-app composer install -q --ignore-platform-reqs --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Generate Keys
-      run: docker-compose exec -T app php artisan key:generate
-      # run: docker exec -u 0 webstamp-app php artisan key:generate
+      run: docker exec -u 0 webstamp-app php artisan key:generate
     - name: Run Tests
-      run: docker-compose exec -T app vendor/bin/phpunit tests/EndToEnd
-      # run: docker exec -u 0 webstamp-app vendor/bin/phpunit tests/EndToEnd
+      run: docker exec -u 0 webstamp-app vendor/bin/phpunit tests/EndToEnd
