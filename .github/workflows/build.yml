@@ -1,17 +1,17 @@
-name: Build
+# name: Build
 
-on: [push]
+# on: [push]
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# jobs:
+#  build:
+#    runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build container
-        run: docker-compose up -d --build
-      - name: Execute container
-        run: | 
-          docker network create mynetwork
-          docker run --network=mynetwork -d -p 127.0.0.1:6060:6060 --name webstamp nginx:alpine
-          docker run -t --network=mynetwork appropriate/curl http://webstamp
+#    steps:
+#      - uses: actions/checkout@v2
+#      - name: Build container
+#        run: docker-compose up -d --build
+#      - name: Execute container
+#        run: | 
+#          docker network create mynetwork
+#          docker run --network=mynetwork -d -p 127.0.0.1:6060:6060 --name webstamp nginx:alpine
+#          docker run -t --network=mynetwork appropriate/curl http://webstamp

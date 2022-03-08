@@ -1,14 +1,14 @@
-name: Linting
+# name: Linting
 
-on: [push]
+# on: [push]
 
-jobs:
-  tests:
-    runs-on: ubuntu-latest
+#jobs:
+#  tests:
+#    runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: Install Dependencies
-      run: composer install -q --ignore-platform-reqs --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-    - name: Run PHPCS on app
-      run: vendor/bin/phpcs --standard=PSR2 app
+#    steps:
+#    - uses: actions/checkout@v2
+#    - name: Install Dependencies
+#      run: composer install -q --ignore-platform-reqs --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+#    - name: Run PHPCS on app
+#      run: vendor/bin/phpcs --standard=PSR2 app
