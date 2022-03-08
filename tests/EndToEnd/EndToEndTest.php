@@ -9,6 +9,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
  
 class EndToEndTest extends TestCase
 {
+
     /**
      * See title.
      *
