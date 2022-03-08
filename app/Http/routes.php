@@ -21,65 +21,6 @@ use App\Team;
 //     return view('pages.home', compact("losses", "project_id"));
 // }]);
 
-function mapAssumptions($project_id){
-    $assumptions = App\Assumptions::where('project_id', $project_id)->orderBy('id')->get();
-    $index = 0;
-
-    $assumptions_map = null;
-
-    foreach($assumptions as $assumption) {
-        $assumptions_map[$assumption->id] = ++$index;
-    }
-    return $assumptions_map;
-}
-
-function mapLoss($losses){
-    $index = 0;
-
-    $loss_map = null;
-
-    foreach($losses as $loss) {
-        $loss_map[$loss->id] = ++$index;
-    }
-    return $loss_map;
-}
-
-function mapHazard($project_id){
-    $hazards = App\Hazards::where('project_id', $project_id)->orderBy('id')->get();
-    $index = 0;
-
-    $hazard_map = null;
-
-    foreach($hazards as $hazard) {
-        $hazard_map[$hazard->id] = ++$index;
-    }
-    return $hazard_map;
-}
-
-function mapGoals($project_id){
-    $sysgoals = App\SystemGoals::where('project_id', $project_id)->orderBy('id')->get();
-    $index = 0;
-
-    $sysgoal_map = null;
-
-    foreach($sysgoals as $sysgoal) {
-        $sysgoal_map[$sysgoal->id] = ++$index;
-    }
-    return $sysgoal_map;
-}
-
-function mapConstraints($project_id){
-    $syscons = App\SystemSafetyConstraints::where('project_id', $project_id)->get();
-    $index = 0;
-
-    $syscons_map = null;
-
-    foreach($syscons as $sysconstraint) {
-        $syscons_map[$sysconstraint->id] = ++$index;
-    }
-    return $syscons_map;
-}
-
 Route::get('/', ['as' => 'home', function () {
     return view('home');
 }]);
@@ -92,11 +33,45 @@ Route::match(array('GET', 'POST'), '{slug}/stepone', ['as' => 'stepone', functio
         $losses = App\Losses::where('project_id', $project_id)->orderBy('id')->get();
         $hazards = App\Hazards::where('project_id', $project_id)->orderBy('id')->get();
         $belongsToProject = Team::where('project_id', $project_id)->where('user_id', Auth::user()->id)->first() != null;
-        $loss_map = mapLoss($losses);
-        $hazard_map = mapHazard($project_id);
-        $sysconstraints_map = mapConstraints($project_id);
-        $goals_map = mapGoals($project_id);
-        $assumptions_map = mapAssumptions($project_id);
+        
+        //mapLoss
+        $index = 0;
+        $loss_map = null;
+        foreach($losses as $loss) {
+            $loss_map[$loss->id] = ++$index;
+        }
+ 
+        //mapHazard
+        $index = 0;
+        $hazard_map = null;
+        foreach($hazards as $hazard) {
+            $hazard_map[$hazard->id] = ++$index;
+        }
+ 
+        //mapConstraints
+        $syscons = App\SystemSafetyConstraints::where('project_id', $project_id)->get();
+        $index = 0;
+        $sysconstraints_map = null;
+        foreach($syscons as $sysconstraint) {
+            $sysconstraints_map[$sysconstraint->id] = ++$index;
+        }
+ 
+        //mapGoals
+        $sysgoals = App\SystemGoals::where('project_id', $project_id)->orderBy('id')->get();
+        $index = 0;
+        $goals_map = null;
+        foreach($sysgoals as $sysgoal) {
+            $goals_map[$sysgoal->id] = ++$index;
+        }
+ 
+        // mapAssumptions
+        $assumptions = App\Assumptions::where('project_id', $project_id)->orderBy('id')->get();
+        $index = 0;
+        $assumptions_map = null;
+        foreach($assumptions as $assumption) {
+            $assumptions_map[$assumption->id] = ++$index;
+        }
+        
         return view('pages.stepone', compact("losses", "hazards", "project_id", "project_name", "project_type", "slug", "loss_map", "hazard_map", "goals_map", "assumptions_map", "sysconstraints_map"));
     }
 }]);
