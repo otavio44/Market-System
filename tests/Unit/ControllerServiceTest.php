@@ -51,5 +51,4 @@ class ControllerServiceTest extends TestCase {
 
         $controller_repository->add($this->controller);
     }
-
 }

@@ -57,5 +57,4 @@ class ProjectServiceTest extends TestCase {
 
         $project_repository->add($this->project);
     }
-
 }

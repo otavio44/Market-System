@@ -32,7 +32,6 @@ class IComponentServiceTest extends TestCase {
      *
      * @return void
      */
-    
     public function test_create_component_on_database() {
         $componentInsert = new Component();
         $componentInsert->name = "Name Component Test";
@@ -49,14 +48,12 @@ class IComponentServiceTest extends TestCase {
         
         $this->assertEquals($componentInsert->name, $ComponentSaveDataBase->name);
     }
-
     
     public function test_delete_component_on_database() {
         $componentInsert = new Component();
         $componentInsert->name = "Name Component Test";
         $componentInsert->type = "ControlledProcess";  
         $componentInsert->project_id = $this->project->id;    
-        
 
         $componentService = new ComponentService(new ComponentRepository());
         $ComponentSaveDataBase = $componentService->add($componentInsert);
@@ -67,5 +64,4 @@ class IComponentServiceTest extends TestCase {
             'name' => $componentInsert->name
         ]);
     }
-
 }
