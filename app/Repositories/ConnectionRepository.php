@@ -18,4 +18,12 @@ class ConnectionRepository extends Repository
     {
         return Connection::destroy($id);
     }
+
+    public function update($model)
+    {
+    }
+
+    public function read($id)
+    {
+    }
 }
