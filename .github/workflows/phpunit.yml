@@ -13,4 +13,3 @@ jobs:
       run: composer install -q --ignore-platform-reqs --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Run Tests
       run: docker exec -u 0 webstamp-app vendor/bin/phpunit tests/EndToEnd
-x
