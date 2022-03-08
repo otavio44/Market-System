@@ -16,6 +16,6 @@ jobs:
         php-version: '7.4.27'
         extensions: dom, curl, libxml, mbstring, zip
         tools: composer:v2
-        coverage: pcov
+        coverage: xdebug2
     - name: Execute tests
       run: vendor/bin/phpunit --verbose --coverage-text
