@@ -12,7 +12,10 @@ jobs:
       with:
         php-version: '7.4'
     - uses: actions/checkout@v2
+    - name: Build container
+      run: docker-compose up -d --build
+    - uses: actions/checkout@v2
     - name: Install Dependencies
       run: composer install -q --ignore-platform-reqs --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Run Tests
-      run: vendor/bin/phpunit tests
+      run: vendor/bin/phpunit tests/EndToEnd/
