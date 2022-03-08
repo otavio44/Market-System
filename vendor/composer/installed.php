@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'dffdafb36a712a5b3b983c336b287dcc4e1d6bd6',
+        'reference' => '215c1a20a4bd8738953bbf5fe073ef925c4527f9',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -373,7 +373,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'dffdafb36a712a5b3b983c336b287dcc4e1d6bd6',
+            'reference' => '215c1a20a4bd8738953bbf5fe073ef925c4527f9',
             'dev_requirement' => false,
         ),
         'league/flysystem' => array(
