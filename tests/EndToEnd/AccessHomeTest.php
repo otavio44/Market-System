@@ -1,20 +1,25 @@
 <?php
+ 
+namespace Tests\EndToEnd;
 
+use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-
-class ExampleTest extends TestCase
+ 
+class AccessHomeTest extends TestCase
 {
+
     /**
-     * A basic functional test example.
+     * See title.
      *
      * @return void
      */
-    public function testBasicExample()
+    public function testSeeName()
     {
         $this->visit('/')
-             ->see('STAMP');
+            ->see('About STAMP/STPA')
+            ->dontSee('Error');
     }
 
 }
