@@ -8,7 +8,7 @@ jobs:
 
     steps:
     - name: Build container
-      run: docker-compose up -d
+      run: docker-compose up -d --build
     - name: Install Dependencies
       run: composer install -q --ignore-platform-reqs --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Run Tests
