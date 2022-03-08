@@ -6,6 +6,9 @@ jobs:
   tests:
     runs-on: ubuntu-latest
 
+    runs:
+      using: 'docker'
+      image: 'Dockerfile'
     steps:
     - uses: shivammathur/setup-php@v2
     - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
