@@ -23,10 +23,10 @@ services:
     ports:
       - 33060:3306
     environment:
-      MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_DATABASE: stpatool
+      MYSQL_ROOT_PASSWORD: W3b574mp3mbr43R
+      MYSQL_PASSWORD: W3b574mp3mbr43R
+      MYSQL_USER: webstampEmbraer
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
     volumes:

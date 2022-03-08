@@ -12,6 +12,7 @@
 #        run: docker-compose up -d --build
 #      - name: Execute container
 #        run: | 
+#          docker exec -u 0 webstamp-app echo "Builded"
 #          docker network create mynetwork
 #          docker run --network=mynetwork -d -p 127.0.0.1:6060:6060 --name webstamp nginx:alpine
 #          docker run -t --network=mynetwork appropriate/curl http://webstamp
