@@ -16,7 +16,7 @@ jobs:
       run: docker exec -u 0 webstamp-app composer install -q --ignore-platform-reqs --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Generate Keys
       run: docker exec -u 0 webstamp-app php artisan key:generate
-    - name: Run docker ps
-      run: docker ps -a
+    - name: Run migrate
+      run: docker exec -u 0 webstamp-app php artisan migrate --seed
     - name: Run Tests
       run: docker exec -u 0 webstamp-app vendor/bin/phpunit tests/EndToEnd
