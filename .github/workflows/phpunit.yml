@@ -5,9 +5,9 @@ on: [push]
 jobs:
   tests:
     runs-on: ubuntu-latest
-
+          
     container:
-      image: kenngsimply/laravelapp:v1
+      image: malu0909/test-web:latest
 
     services:
       db-tests:
@@ -22,7 +22,6 @@ jobs:
           image: redis:6-alpine
           ports:
             - 6379:6379
-    steps:
     - uses: shivammathur/setup-php@v2
     - uses: shivammathur/setup-php@15c43e89cdef867065b0213be354c2841860869e
       with:
