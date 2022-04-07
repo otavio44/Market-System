@@ -3,7 +3,8 @@
 Trabalho final do curso de Ciência da Computação cujo objetivo é disponibilizar a ferramenta de análise de hazards (situações de perigo) WebSTAMP open-source juntamente com um pipeline fim-a-fim de integração e entrega contínua, com objetivo de automatizar os testes, verificações de padrão de código e deployment, visando maior qualidade de código e facilidade na colaboração da comunidade.
 
 # Diagrama da infraestrutura do pipeline
- imagem vai aqui
+![Cópia de Diagrama CI v1 - work futuro](https://user-images.githubusercontent.com/56079012/162291534-7982c143-0204-4c4a-a7c7-9194161126f9.png)
+
  
 # Requisitos
 - PHP (7.4)
