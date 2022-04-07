@@ -1,31 +1,63 @@
-**Attention! ** If no change in the resources folder, it is not necessary to run the second command (gulp watch)
+# Pipeline CI/CD WebSTAMP
 
+Trabalho final do curso de Ciência da Computação cujo objetivo é disponibilizar a ferramenta de análise de hazards (situações de perigo) WebSTAMP open-source juntamente com um pipeline fim-a-fim de integração e entrega contínua, com objetivo de automatizar os testes, verificações de padrão de código e deployment, visando maior qualidade de código e facilidade na colaboração da comunidade.
 
-## **About Laravel**
+# Diagrama da infraestrutura do pipeline
+ imagem vai aqui
+ 
+# Requisitos
+- PHP (7.4)
+- Docker (preferably the latest version)
+- Composer (latest version)
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+# Passos para execução
+Abra o terminal para clonar o repositório
+```
+gh clone a
+```
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+Inicie o container docker
+```
+docker-compose up -d --build
+```
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Acesse o container
+```
+docker exec -i -t webstamp-app /bin/bash
+```
 
+Instale as dependências
+```
+composer update
+```
 
-## **Laravel Documentation**
+Crie as migrations do banco de dados
+```
+php artisan migrate --seed
+```
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+Uma nova chave deve ser gerada  para a nova execução
+```
+php artisan key:generate
+```
 
-## **Laravel Contributing**
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## **Laravel Security Vulnerabilities**
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-## **Laravel License**
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+Libere o aplicativo no servidor de desenvolvimento do PHP
+```
+php artisan serve
+```
+Depois disso, você poderá acessar o WebSTAMP (localhost:8000)
+ 
+ ## Execução dos workflows
+ 
+ Toda alteração feita no código fonte deve seguir o padrão de codificação [PSR-2](https://www.php-fig.org/psr/psr-2/). Quando o commit da alteração for submetido ao repositório principal, testes automatizados vão ser executados para verificação dos padrões. 
+ Exemplo de saída para um trecho de código com erros de lintigin:
+ - IMAGEM DO PRINT DO ERRO LINT VEM AQ
+ 
+ O mesmo vale para os testes de unidade, integração e aceitação, o workflow tests ira executar todos os testes existentes averiguando se não houve quebra das funcionalidades. 
+ Exemplo de saída após a execução de todos os testes:
+ - IMAGEM DO PRINT DOS TESTES VEM AQ
+ 
+ Além disso, a cada novo commit as execuções dos testes geram um relatório de cobertura de código, por meio dele é possível observar o estado atual de cada classe em relação a sua cobertura de código. Exemplo de saída após execução do workflow:
+ - IMAGEM DO PRINT VEM  AQ
+  
+Todas os exemplos mostrados anteriormentes podem ser acessados na aba Actions dentro do portal do Github.
