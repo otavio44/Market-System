@@ -53,6 +53,7 @@ Depois disso, você poderá acessar o WebSTAMP (localhost:8000)
  Toda alteração feita no código fonte deve seguir o padrão de codificação [PSR-2](https://www.php-fig.org/psr/psr-2/). Quando o commit da alteração for submetido ao repositório principal, testes automatizados vão ser executados para verificação dos padrões. 
  Exemplo de saída para um trecho de código com erros de linting:
  
+ ![image](https://user-images.githubusercontent.com/56079012/162291691-45ae554f-8381-45e3-be7b-739908132943.png)
  
  O mesmo vale para os testes de unidade, integração e aceitação, o workflow tests ira executar todos os testes existentes averiguando se não houve quebra das funcionalidades. 
  Exemplo de saída após a execução de todos os testes:
