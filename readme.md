@@ -50,14 +50,14 @@ Depois disso, você poderá acessar o WebSTAMP (localhost:8000)
  ## Execução dos workflows
  
  Toda alteração feita no código fonte deve seguir o padrão de codificação [PSR-2](https://www.php-fig.org/psr/psr-2/). Quando o commit da alteração for submetido ao repositório principal, testes automatizados vão ser executados para verificação dos padrões. 
- Exemplo de saída para um trecho de código com erros de lintigin:
- - IMAGEM DO PRINT DO ERRO LINT VEM AQ
+ Exemplo de saída para um trecho de código com erros de linting:
+ 
  
  O mesmo vale para os testes de unidade, integração e aceitação, o workflow tests ira executar todos os testes existentes averiguando se não houve quebra das funcionalidades. 
  Exemplo de saída após a execução de todos os testes:
- - IMAGEM DO PRINT DOS TESTES VEM AQ
+![image](https://user-images.githubusercontent.com/56079012/162291393-a4eae4f8-3693-4fb2-af1f-b6720ba41b8b.png)
  
  Além disso, a cada novo commit as execuções dos testes geram um relatório de cobertura de código, por meio dele é possível observar o estado atual de cada classe em relação a sua cobertura de código. Exemplo de saída após execução do workflow:
- - IMAGEM DO PRINT VEM  AQ
+ ![image](https://user-images.githubusercontent.com/56079012/162291019-3f3e0df3-fae6-409d-85d8-2009bab64c18.png)
   
 Todas os exemplos mostrados anteriormentes podem ser acessados na aba Actions dentro do portal do Github.
